@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jokes-deployment
+  namespace: default
+  labels:
+    app: jokes
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: jokes
+  template:
+    metadata:
+      labels:
+        app: jokes
+    spec:
+      imagePullSecrets:
+        - name: eks-credentials
+      containers:
+        - image: jokes-image
+          imagepullpolicy: Always
+          name: jokes
+          ports:
+            - containerPort: 5000
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: "1"
+          requests:
+            memory: 256Mi
+            cpu: "0.2"

@@ -1,0 +1,11 @@
+# Ignore all .env files
+**/.env
+# Ignore all VSCode settings
+.python-version
+.vscode/*
+# Ignore all local .terraform directories
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.tfvars
+.terraform*

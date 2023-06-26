@@ -1,0 +1,48 @@
+# Default values for jokes-chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 3
+
+image:
+  repository: jokes-image
+  pullPolicy: Always
+  tag: "latest"
+
+imagePullSecrets: [
+  {
+    name: "eks-credentials"
+  }
+]
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: LoadBalancer
+  port: 80
+  targetPort: 5000
+
+autoscaling:
+  enabled: true
+  replicaCount: 2
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 80
+
+resources: {
+  limits: {
+    cpu: "1",
+    memory: "512Mi"
+  },
+  requests: {
+    cpu: "0.2",
+    memory: "256Mi"
+  }
+}
+
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

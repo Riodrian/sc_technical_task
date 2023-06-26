@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: jokes-microservice
+spec:
+  type: LoadBalancer
+  selector:
+    app: jokes-microservice
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
